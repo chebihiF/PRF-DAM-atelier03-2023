@@ -26,11 +26,36 @@ public class MainActivity extends AppCompatActivity {
         web_btn = findViewById(R.id.web_btn);
         geo_btn = findViewById(R.id.geo_btn);
 
+        geo_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri geoLocation = Uri.parse("geo:48.860745416359656, 2.2948473712366013?z=14");
+                //Uri telNumber = Uri.parse("geo:0,0?q=1 Quai de Grenelle");
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(geoLocation);
+                if(intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
+        });
+
+        web_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri webPage = Uri.parse("www.google.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, webPage);
+                if(intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
+        });
+
         tel_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Uri telNumber = Uri.parse("tel:08920182");
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:08920182"));
+                intent.setData(telNumber);
                 if(intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
